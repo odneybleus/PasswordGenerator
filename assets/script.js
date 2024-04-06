@@ -1,56 +1,49 @@
 // Assignment code here
 var allCap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-var allLower ="abcdefghijklmnopqrstuvwxyz"
-var allSpec = "!@#$%^&*()+-?<>"
+var allLower ="abcdefghijklmnopqrstuvwxyz";
+var allSpec = "!@#$%^&*()+-?<>";
 var allNum = "1234567890";
-
-
-// var randomUpperCaseLetters = function(freq){
-//   var Capletter = "";
-//  for(let i = 0; i < freq; i++){
-//   const random = Math.floor(Math.random() * Capletter.length )
-//   Capletter += upperCase[random]
-//  }
-//  return Capletter
-// }
-
-
-
-// var randomLoweCaseLetters = function(freq){
-//   var Capletter = "";
-//  for(let i = 0; i < freq; i++){
-//   const random = Math.floor(Math.random() * Capletter.length )
-//   Capletter += lowerCase[random]
-//  }
-//  return Capletter
-// }
-
 
 
 var generatePassword = function (){
   var passString = ""
-window.alert(`Welcome to password Generator!`)
- var promptLength = window.prompt(`What is the length of the password? Password has to be minium 8 characters no more then 128` )
+  var combineString =""
+  window.alert(`Welcome to password Generator!`)
+  var promptLength = window.prompt(`What is the length of the password? Password has to be minium 8 characters no more then 128` )
  var promptlowercase =window.confirm(`Would you like to add lower case letters to password?`)
  var promptCapitalcase =window.confirm(`Would you like to add capital case letters to password?`)
- while(promptLength >= 8 && promptLength < 128){
- if(promptCapitalcase){
-  for(let i = 0; i < promptLength; i++){
-    const random = Math.floor(Math.random() * allCap.length)
-    passString += allCap.charAt(random)
-  }
-   return passString
- } 
-//  if(promptlowercase){
-//   for(let i = 0; i < promptLength; i++){
-//     const random = Math.floor(Math.random() * passString.length)
-//     passString += allLower[random]
-//   }
-//    return passString
-//  }
+ var promtSpecialCharacter = window.confirm(`Would you like to add special characters to password?`)
+ var promtNumberCharacters = window.confirm(`Would you like to add number characters to password?`)
+if(promptLength < 8 || promptLength > 128){
+ return window.alert(`Password length does not meet requirments!`)
+ 
+}
 
+if(promptlowercase){
+  combineString += allLower
 }
+if(promptCapitalcase){
+  combineString += allCap
 }
+if(promtSpecialCharacter){
+  combineString += allSpec
+}
+if(promtNumberCharacters){
+  combineString += allNum
+}
+if(combineString === ""){
+  return window.alert(`Must select at least one character!`)
+}
+ if(combineString != ""){
+  for(let i = 0; i < promptLength; i++){
+    passString += combineString[Math.floor(Math.random() * combineString.length)]
+  }
+  return passString
+ }
+ 
+}
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
